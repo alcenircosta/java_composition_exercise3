@@ -71,6 +71,7 @@ public class Order {
 	}
 
 	public String toString() {
+		double total = 0.0;
 		StringBuilder sb = new StringBuilder();
 		sb.append("ORDER SUMMARY: \n");
 		sb.append("Order moment: " + sdt.format(this.getMoment()) + "\n");
@@ -79,9 +80,13 @@ public class Order {
 				+ this.getClient().getEmail() + "\n");
 		sb.append("Order items: ");
 		for (OrderItem item : item) {
+		
 			sb.append(item.toString());
+			total+= item.subTotal();
 		}
+		sb.append("Total price: $"+String.format("%.2f%n", total)+"\n");
 		return sb.toString();
+		
 	}
 
 }
